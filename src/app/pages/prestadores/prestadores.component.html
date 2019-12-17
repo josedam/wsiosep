@@ -1,0 +1,29 @@
+<br />
+
+<div class="row">
+  <ul class="nav nav-pills">
+    <li class="nav-item" *ngFor="let opcion of prestadoresService.opciones">
+      <a
+        class="nav-link"
+        (click)="getPrestadores(opcion.letra)"
+        [ngClass]="{ active: prestadoresService.letra == opcion.letra }"
+        href="#"
+        ><strong>{{ opcion.titulo.slice(0, 1) }}</strong
+        >{{ opcion.titulo.slice(1) }}</a
+      >
+    </li>
+  </ul>
+</div>
+<br />
+
+<div class="row">
+  <ag-grid-angular
+    class="ag-theme-balham"
+    #agGrid
+    style="width: 100%; height: 500px;"
+    [rowData]="prestadoresService.prestadores"
+    [columnDefs]="columnDefs"
+    [floatingFilter]="true"
+  >
+  </ag-grid-angular>
+</div>
