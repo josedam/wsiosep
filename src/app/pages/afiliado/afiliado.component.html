@@ -29,13 +29,13 @@
           
           <div class="col">Cuil</div>
           <div class="col-7">
-            {{ afiliadoService.afiliado.Cuil }}
+            {{ afiliadoService.afiliado.Cuil | edCuit }}
           </div>
           <div class="w-100"></div>
           
           <div class="col">Documento</div>
           <div class="col-7">
-            {{ afiliadoService.afiliado.TipoDoc }} {{ afiliadoService.afiliado.Documento }}
+            {{ afiliadoService.afiliado.TipoDoc }} {{ afiliadoService.afiliado.Documento | number}}
           </div>
           <div class="w-100"></div>
         </div>
@@ -59,11 +59,6 @@
               Masculino
             </div>
 
-            <!-- <div>
-            <i class="fa fa-lg" 
-              [ngClass]="{'fa-female': afiliadoService.afiliado.Sexo == 'F','fa-male': afiliadoService.afiliado.Sexo == 'M'}"></i>
-              {{ afiliadoService.afiliado.Sexo }}
-            </div> -->
           </div>
           <div class="w-100"></div>
           <div class="w-100"></div>
@@ -84,89 +79,7 @@
 
         </div>
 
-          <!-- <table >
-            <tr>
-              <td>Numero</td>
-              <td>{{ afiliadoService.afiliado.Numero }}/{{ afiliadoService.afiliado.Familiar }}</td>
-            </tr>
-            <tr>
-              <td>Cuil</td>
-              <td>{{ afiliadoService.afiliado.Cuil }}</td>
-            </tr>
-            <tr>
-              <td>Documento</td>
-              <td>{{ afiliadoService.afiliado.TipoDoc }} {{ afiliadoService.afiliado.Documento }}</td>
-            </tr>
-            <tr>
-              <td>Fecha Nacimiento</td>
-              <td>{{ afiliadoService.afiliado.FechaNacimiento }} (edad {{ afiliadoService.afiliado.Edad }})</td>
-            </tr>
-            <tr>
-              <td>Genero</td>
-              <td>
-                <i class="fa fa-lg" 
-                [ngClass]="{'fa-female': afiliadoService.afiliado.Sexo == 'F','fa-male': afiliadoService.afiliado.Sexo == 'M'}"></i>
-                {{ afiliadoService.afiliado.Sexo }}
-              </td>
-            </tr>
-            <tr>
-              <td>Materno</td>
-              <td>{{ afiliadoService.afiliado.Materno }}</td>
-            </tr>
-            <tr>
-              <td>Voluntario</td>
-              <td>{{ afiliadoService.afiliado.Voluntario }}</td>
-            </tr>
-          </table> -->
-
       </div>
     </div>
 
-
-
-  <!-- <div class="col-8">
-    <table>
-      <tr>
-        <td class="col-1">
-          <span class="badge badge-pill badge-success" *ngIf="afiliadoService.afiliado.Estado == 1">
-            <strong> Activo </strong></span>
-          <span class="badge badge-pill badge-danger" *ngIf="afiliadoService.afiliado.Estado != 1">Sin Servicio</span>
-
-          {{ afiliadoService.afiliado.FechaEstado }}
-        </td>
-        <td>Cuil</td>
-        <td>{{ afiliadoService.afiliado.Cuil }}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Numero</td>
-        <td>{{ afiliadoService.afiliado.Numero }}/{{ afiliadoService.afiliado.Familiar }}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Documento</td>
-        <td>{{ afiliadoService.afiliado.TipoDoc }} {{ afiliadoService.afiliado.Documento }}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Fecha Nacimiento</td>
-        <td>{{ afiliadoService.afiliado.FechaNacimiento }} (Edad {{ afiliadoService.afiliado.Edad }})</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Sexo</td>
-        <td>{{ afiliadoService.afiliado.Sexo }}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Materno</td>
-        <td>{{ afiliadoService.afiliado.Materno }}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Voluntario</td>
-        <td>{{ afiliadoService.afiliado.Voluntario }}</td>
-      </tr>
-    </table>
-  </div> -->
 </div>

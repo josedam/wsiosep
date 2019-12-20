@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { AfiliadoService } from '../../services/afiliado.service';
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-afiliado',
