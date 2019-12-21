@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AfiliadoService } from '../../services/afiliado.service';
+import { Afiliado } from '../../models/afiliado.model';
 
 @Component({
   selector: 'app-afiliado',
@@ -7,23 +8,11 @@ import { AfiliadoService } from '../../services/afiliado.service';
   styleUrls: ['./afiliado.component.scss']
 })
 export class AfiliadoComponent implements OnInit {
-  campos: any = {
-    ApeyNom: 'Apellido y Nombres',
-    Cuil: 'CUIL',
-    Edad: 'Edad',
-    Estado: 'Estado',
-    FechaEstado: 'Fecha Estado',
-    FechaNacimiento: 'Fecha Nacimiento',
-    Materno: 'Plan Materno',
-    Numero: 'Numero Afiliado',
-    Familiar: 'Familiar',
-    Sexo: 'Sexo',
-    TipoDoc: 'Tipo Documento',
-    Documento: 'Nro.Documento',
-    Voluntario: 'Voluntario'
-  };
+  
+  afiliado: Afiliado = new Afiliado();
+  exist = false;
 
-  constructor(public afiliadoService: AfiliadoService) { }
+  constructor(private afiliadoService: AfiliadoService) { }
 
   ngOnInit() {
     this.hacerFoco();
@@ -36,9 +25,21 @@ export class AfiliadoComponent implements OnInit {
   buscar(texto: string) {
     if (texto.indexOf('/') > (-1)) {
       let a = texto.split('/', 2);
-      this.afiliadoService.getByAfiliado(parseInt(a[0], 10), Number.parseInt(a[1], 10));
+      this.afiliadoService.getByAfiliado(parseInt(a[0], 10), Number.parseInt(a[1], 10))
+       .subscribe((afiliado:Afiliado) => {
+        this.setAfiliado(afiliado);
+       });
     } else {
-      this.afiliadoService.getByDnioCuit(parseInt(texto, 10));
+      this.afiliadoService.getByDnioCuit(parseInt(texto, 10))
+       .subscribe((afiliado:Afiliado) => {
+         this.setAfiliado(afiliado);
+       });
     }
   }
+
+  setAfiliado(afiliado:Afiliado) {
+    this.afiliado = afiliado;
+    this.exist = this.afiliado.Estado > 0;
+  }
+
 }

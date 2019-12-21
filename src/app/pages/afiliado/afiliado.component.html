@@ -1,85 +1,105 @@
 <br />
 <div class="row">
-  <input #input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda"
-    placeholder="Nro de Afiliado, CUIL o DNI a buscar" (keyup.enter)="buscar(input.value)" />
-
+  <input
+    #input
+    type="text"
+    class="form-control"
+    id="textoBusqueda"
+    name="textoBusqueda"
+    placeholder="Nro de Afiliado, CUIL o DNI a buscar"
+    (keyup.enter)="buscar(input.value)"
+  />
 </div>
-<br>
-<div class="row" *ngIf="afiliadoService.exist">
-    <div class="card" style="width: 25rem;">
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ afiliadoService.afiliado.ApeyNom }}
-        </h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          <span class="badge badge-pill badge-success" *ngIf="afiliadoService.afiliado.Estado == 1">
-            <strong> Activo </strong></span>
-          <span class="badge badge-pill badge-danger" *ngIf="afiliadoService.afiliado.Estado != 1">
-            Sin Servicio</span>
+<br />
+<div class="row" *ngIf="exist">
+  <div class="card" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ afiliado.ApeyNom }}
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <span
+          class="badge badge-pill badge-success"
+          *ngIf="afiliado.Estado == 1"
+        >
+          <strong> Activo </strong></span
+        >
+        <span
+          class="badge badge-pill badge-danger"
+          *ngIf="afiliado.Estado != 1"
+        >
+          Sin Servicio</span
+        >
+        {{ afiliado.FechaEstado }}
+      </h6>
 
-          {{ afiliadoService.afiliado.FechaEstado }}
-        </h6>
+      <div class="row" style="margin-top: 10px;">
+        <div class="col">Numero</div>
+        <div class="col-7">{{ afiliado.Numero }}/{{ afiliado.Familiar }}</div>
+        <div class="w-100"></div>
 
-        <div class="row" style="margin-top: 10px;">
-          <div class="col">Numero</div>
-          <div class="col-7">
-            {{ afiliadoService.afiliado.Numero }}/{{ afiliadoService.afiliado.Familiar }}
-          </div>
-          <div class="w-100"></div>
-          
-          <div class="col">Cuil</div>
-          <div class="col-7">
-            {{ afiliadoService.afiliado.Cuil | edCuit }}
-          </div>
-          <div class="w-100"></div>
-          
-          <div class="col">Documento</div>
-          <div class="col-7">
-            {{ afiliadoService.afiliado.TipoDoc }} {{ afiliadoService.afiliado.Documento | number}}
-          </div>
-          <div class="w-100"></div>
+        <div class="col">Cuil</div>
+        <div class="col-7">
+          {{ afiliado.Cuil | edCuit }}
         </div>
-     
-        <div class="row" style="margin-top: 10px;">
-          <div class="col">Nacimiento</div>
-          <div class="col-7">
-            {{ afiliadoService.afiliado.FechaNacimiento }} (edad {{ afiliadoService.afiliado.Edad }})
-          </div>
-          <div class="w-100"></div>
-          
-          <div class="col">Genero</div>
-          <div class="col-7 style=" >
+        <div class="w-100"></div>
 
-            <div *ngIf="afiliadoService.afiliado.Sexo == 'F'">
-              <i class="fa fa-lg fa-female" style="color:magenta;" ></i> 
-              Femenino
-            </div>
-            <div  *ngIf="afiliadoService.afiliado.Sexo == 'M'">
-              <i class="fa fa-lg fa-male"   style="color: blue"></i> 
-              Masculino
-            </div>
-
-          </div>
-          <div class="w-100"></div>
-          <div class="w-100"></div>
-        </div>  
-        <div class="row" style="margin-top: 10px; ">
-          <div class="col">Materno</div>
-          <div class="col-7">
-            <i class="fa fa-check" style="color: green;" *ngIf="afiliadoService.afiliado.Materno == true"></i>
-            <i class="fa fa-ban" style="color:firebrick;" *ngIf="afiliadoService.afiliado.Materno == false"></i>
-          </div>
-          <div class="w-100"></div>
-
-          <div class="col">Voluntario</div>
-          <div class="col-7">
-            <i class="fa fa-check" style="color: green;" *ngIf="afiliadoService.afiliado.Voluntario == true"></i>
-            <i class="fa fa-ban" style="color:firebrick;" *ngIf="afiliadoService.afiliado.Voluntario == false"></i>
-          </div>
-
+        <div class="col">Documento</div>
+        <div class="col-7">
+          {{ afiliado.TipoDoc }} {{ afiliado.Documento | number }}
         </div>
+        <div class="w-100"></div>
+      </div>
 
+      <div class="row" style="margin-top: 10px;">
+        <div class="col">Nacimiento</div>
+        <div class="col-7">
+          {{ afiliado.FechaNacimiento }} (edad {{ afiliado.Edad }})
+        </div>
+        <div class="w-100"></div>
+
+        <div class="col">Genero</div>
+        <div class="col-7 style=">
+          <div *ngIf="afiliado.Sexo == 'F'">
+            <i class="fa fa-lg fa-female" style="color:magenta;"></i> Femenino
+          </div>
+          <div *ngIf="afiliado.Sexo == 'M'">
+            <i class="fa fa-lg fa-male" style="color: blue"></i> Masculino
+          </div>
+        </div>
+        <div class="w-100"></div>
+        <div class="w-100"></div>
+      </div>
+      <div class="row" style="margin-top: 10px; ">
+        <div class="col">Materno</div>
+        <div class="col-7">
+          <i
+            class="fa fa-check"
+            style="color: green;"
+            *ngIf="afiliado.Materno == true"
+          ></i>
+          <i
+            class="fa fa-ban"
+            style="color:firebrick;"
+            *ngIf="afiliado.Materno == false"
+          ></i>
+        </div>
+        <div class="w-100"></div>
+
+        <div class="col">Voluntario</div>
+        <div class="col-7">
+          <i
+            class="fa fa-check"
+            style="color: green;"
+            *ngIf="afiliado.Voluntario == true"
+          ></i>
+          <i
+            class="fa fa-ban"
+            style="color:firebrick;"
+            *ngIf="afiliado.Voluntario == false"
+          ></i>
+        </div>
       </div>
     </div>
-
+  </div>
 </div>
